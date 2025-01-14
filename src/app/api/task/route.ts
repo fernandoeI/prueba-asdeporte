@@ -2,10 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 
 export async function GET() {
-  const file = await fs.readFile(process.cwd() + "/public/tasks.json", "utf8");
-  const data = JSON.parse(file);
+  try {
+    const file = await fs.readFile(
+      process.cwd() + "/public/tasks.json",
+      "utf8"
+    );
+    const data = JSON.parse(file);
 
-  return NextResponse.json(data);
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function POST(req: NextRequest) {

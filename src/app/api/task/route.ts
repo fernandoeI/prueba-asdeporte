@@ -11,12 +11,7 @@ export async function GET() {
   try {
     const initFile = () => {
       if (!fs.existsSync(filePath)) {
-        const initialData = [
-          {
-            id: "aeb959f1-032a-4090-bc49-87f243991348",
-            name: "sleep",
-          },
-        ];
+        const initialData = [{}];
         fs.writeFileSync(filePath, JSON.stringify(initialData, null, 2));
         console.log("Archivo creado en:", filePath);
       } else {

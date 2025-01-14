@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 import { ITask } from "@/interfaces/task";
 
 export async function DELETE(
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const id = (await params).id;

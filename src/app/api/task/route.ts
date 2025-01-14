@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   const file = await fs.readFile(
     process.cwd() + "/src/data/tasks.json",
     "utf8"

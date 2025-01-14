@@ -1,10 +1,9 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Login() {
-  const router = useRouter();
   const { status } = useSession();
 
   if (status === "authenticated") redirect("/");

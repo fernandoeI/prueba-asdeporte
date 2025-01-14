@@ -5,7 +5,7 @@ import path from "path";
 const filePath =
   process.env.NODE_ENV === "production"
     ? "/tmp/tasks.json"
-    : path.join(process.cwd(), "tasks.json");
+    : path.join(process.cwd(), "/tmp/tasks.json");
 
 export async function GET() {
   try {
@@ -19,8 +19,8 @@ export async function GET() {
       }
     };
     initFile();
-    const usersPath = path.join(process.cwd(), "/tmp/tasks.json");
-    const file = fs.readFileSync(usersPath);
+
+    const file = fs.readFileSync(filePath);
     const data = JSON.parse(file.toString());
     return NextResponse.json(data);
   } catch (error) {
@@ -29,15 +29,11 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const usersPath = path.join(process.cwd(), "/tmp/tasks.json");
-  const file = fs.readFileSync(usersPath);
+  const file = fs.readFileSync(filePath);
   const data = JSON.parse(file.toString());
 
   const body = await req.json();
-  fs.writeFileSync(
-    process.cwd() + "/tmp/tasks.json",
-    JSON.stringify([...data, body], null, 2)
-  );
+  fs.writeFileSync(filePath, JSON.stringify([...data, body], null, 2));
 
   return NextResponse.json(body);
 }

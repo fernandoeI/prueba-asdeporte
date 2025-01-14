@@ -5,14 +5,13 @@ import Task from "@/components/Task";
 import { ITask } from "@/interfaces/task";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [loading, setLoading] = useState(true);
   const { status } = useSession();
-  const router = useRouter();
 
   const getTasks = async () => {
     try {

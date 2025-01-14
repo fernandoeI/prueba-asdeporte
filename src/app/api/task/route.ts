@@ -11,7 +11,7 @@ export async function GET() {
   try {
     const initFile = () => {
       if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, JSON.stringify(null, null, 2));
+        fs.writeFileSync(filePath, JSON.stringify([], null, 2));
       } else {
       }
     };

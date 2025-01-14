@@ -4,7 +4,7 @@ import path from "path";
 
 export async function GET() {
   try {
-    const usersPath = path.join(process.cwd(), "/public/tasks.json");
+    const usersPath = path.join(process.cwd(), "/tmp/tasks.json");
     const file = fs.readFileSync(usersPath);
     const data = JSON.parse(file.toString());
 
@@ -15,13 +15,13 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const usersPath = path.join(process.cwd(), "/public/tasks.json");
+  const usersPath = path.join(process.cwd(), "/tmp/tasks.json");
   const file = fs.readFileSync(usersPath);
   const data = JSON.parse(file.toString());
 
   const body = await req.json();
   fs.writeFileSync(
-    process.cwd() + "/public/tasks.json",
+    process.cwd() + "/tmp/tasks.json",
     JSON.stringify([...data, body], null, 2)
   );
 

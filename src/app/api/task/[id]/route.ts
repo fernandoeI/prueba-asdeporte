@@ -9,7 +9,7 @@ export async function DELETE(
 ) {
   const id = (await params).id;
 
-  const usersPath = path.join(process.cwd(), "/public/tasks.json");
+  const usersPath = path.join(process.cwd(), "/tmp/tasks.json");
   const file = fs.readFileSync(usersPath);
   const data = JSON.parse(file.toString());
 
@@ -17,7 +17,7 @@ export async function DELETE(
   data.splice(index, 1);
 
   fs.writeFileSync(
-    process.cwd() + "/public/tasks.json",
+    process.cwd() + "/tmp/tasks.json",
     JSON.stringify(data, null, 2)
   );
 
@@ -31,14 +31,14 @@ export async function PUT(
   const id = (await params).id;
   const body = await req.json();
 
-  const file = fs.readFileSync(process.cwd() + "/public/tasks.json", "utf8");
+  const file = fs.readFileSync(process.cwd() + "/tmp/tasks.json", "utf8");
   const data = JSON.parse(file);
 
   const index = data.findIndex((x: ITask) => x.id === id);
   data.splice(index, 1, body);
 
   fs.writeFileSync(
-    process.cwd() + "/public/tasks.json",
+    process.cwd() + "/tmp/tasks.json",
     JSON.stringify(data, null, 2)
   );
 

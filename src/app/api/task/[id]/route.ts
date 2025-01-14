@@ -9,8 +9,8 @@ export async function DELETE(
 ) {
   const id = (await params).id;
 
-  let usersPath = path.join(process.cwd(), "/public/tasks.json");
-  let file = fs.readFileSync(usersPath);
+  const usersPath = path.join(process.cwd(), "/public/tasks.json");
+  const file = fs.readFileSync(usersPath);
   const data = JSON.parse(file.toString());
 
   const index = data.findIndex((x: ITask) => x.id === id);

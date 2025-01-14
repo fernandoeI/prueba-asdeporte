@@ -4,8 +4,8 @@ import path from "path";
 
 export async function GET() {
   try {
-    let usersPath = path.join(process.cwd(), "/public/tasks.json");
-    let file = fs.readFileSync(usersPath);
+    const usersPath = path.join(process.cwd(), "/public/tasks.json");
+    const file = fs.readFileSync(usersPath);
     const data = JSON.parse(file.toString());
 
     return NextResponse.json(data);
@@ -15,8 +15,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  let usersPath = path.join(process.cwd(), "/public/tasks.json");
-  let file = fs.readFileSync(usersPath);
+  const usersPath = path.join(process.cwd(), "/public/tasks.json");
+  const file = fs.readFileSync(usersPath);
   const data = JSON.parse(file.toString());
 
   const body = await req.json();

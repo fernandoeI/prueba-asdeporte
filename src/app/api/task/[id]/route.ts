@@ -8,17 +8,14 @@ export async function DELETE(
 ) {
   const id = (await params).id;
 
-  const file = await fs.readFile(
-    process.cwd() + "/src/data/tasks.json",
-    "utf8"
-  );
+  const file = await fs.readFile(process.cwd() + "/public/tasks.json", "utf8");
   const data = JSON.parse(file);
 
   const index = data.findIndex((x: ITask) => x.id === id);
   data.splice(index, 1);
 
   await fs.writeFile(
-    process.cwd() + "/src/data/tasks.json",
+    process.cwd() + "/public/tasks.json",
     JSON.stringify(data, null, 2)
   );
 
@@ -32,17 +29,14 @@ export async function PUT(
   const id = (await params).id;
   const body = await req.json();
 
-  const file = await fs.readFile(
-    process.cwd() + "/src/data/tasks.json",
-    "utf8"
-  );
+  const file = await fs.readFile(process.cwd() + "/public/tasks.json", "utf8");
   const data = JSON.parse(file);
 
   const index = data.findIndex((x: ITask) => x.id === id);
   data.splice(index, 1, body);
 
   await fs.writeFile(
-    process.cwd() + "/src/data/tasks.json",
+    process.cwd() + "/public/tasks.json",
     JSON.stringify(data, null, 2)
   );
 

@@ -19,9 +19,11 @@ export default function Home() {
       <div className="flex flex-col max-w-screen-md m-auto">
         <AddTask />
 
-        {tasks.map((task: ITask) => (
-          <Task key={task.id} task={task} />
-        ))}
+        {tasks.length > 0 ? (
+          tasks.map((task: ITask) => <Task key={task.id} task={task} />)
+        ) : (
+          <div>Agrega una nueva tarea</div>
+        )}
       </div>
     </>
   );

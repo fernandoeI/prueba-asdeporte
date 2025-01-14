@@ -11,11 +11,8 @@ export async function GET() {
   try {
     const initFile = () => {
       if (!fs.existsSync(filePath)) {
-        const initialData = [{}];
-        fs.writeFileSync(filePath, JSON.stringify(initialData, null, 2));
-        console.log("Archivo creado en:", filePath);
+        fs.writeFileSync(filePath, JSON.stringify(null, null, 2));
       } else {
-        console.log("El archivo ya existe:", filePath);
       }
     };
     initFile();

@@ -13,6 +13,7 @@ const AddTask = () => {
         className="border-2 p-2 m-2"
         placeholder="Nombre de la tarea"
         onChange={(e) => setName(e.target.value)}
+        value={name || ""}
       />
       <button
         className={`text-white radius rounded-md p-2 m-2 ${isDisabled}`}

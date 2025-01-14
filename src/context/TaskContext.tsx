@@ -16,7 +16,13 @@ interface TaskContextType {
   onUpdate: ({ task }: { task: ITask }) => void;
 }
 
-const TaskContext = createContext<TaskContextType>();
+const TaskContext = createContext<TaskContextType>({
+  tasks: [],
+  loading: false,
+  onAdd: () => {},
+  onDelete: () => {},
+  onUpdate: () => {},
+});
 
 export const useTaskContext = () => {
   return useContext(TaskContext);
@@ -40,6 +46,7 @@ export const TaskProvider = ({ children }: Props) => {
   const onAdd = async ({ name }: { name: string }) => {
     try {
       await axios.post("/api/task", { id: uuidv4(), name });
+      getTasks();
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +55,7 @@ export const TaskProvider = ({ children }: Props) => {
   const onDelete = async ({ id }: { id: string }) => {
     try {
       await axios.delete(`/api/task/${id}`);
+      getTasks();
     } catch (error) {
       console.error(error);
     }
@@ -56,6 +64,7 @@ export const TaskProvider = ({ children }: Props) => {
   const onUpdate = async ({ task }: { task: ITask }) => {
     try {
       await axios.put(`/api/task/${task.id}`, task);
+      getTasks();
     } catch (error) {
       console.error(error);
     }

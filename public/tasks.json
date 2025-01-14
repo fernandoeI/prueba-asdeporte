@@ -1,9 +1,5 @@
 [
   {
-    "id": "bd6c808a-d31e-485e-a51f-c4d564f6e6a6",
-    "name": "take a shower"
-  },
-  {
     "id": "8ac7f90b-2553-40a6-8372-2c5b02e7240f",
     "name": "eat"
   },
@@ -13,10 +9,18 @@
   },
   {
     "id": "3a1b5494-2902-4094-9f3e-d8404c891a6d",
-    "name": "run 2"
+    "name": "run "
   },
   {
     "id": "160f3fa8-f73b-4c3c-88a1-f3af43e7e73f",
     "name": "jump"
+  },
+  {
+    "id": "950b1f2a-fb1d-4d69-8148-d6fdca31bd38",
+    "name": "clean"
+  },
+  {
+    "id": "4e5fb602-56de-4988-a473-24a40c6439a7",
+    "name": "walk"
   }
 ]

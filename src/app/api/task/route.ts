@@ -7,18 +7,17 @@ const filePath =
     ? "/tmp/tasks.json"
     : path.join(process.cwd(), "tasks.json");
 
-export const initFile = () => {
-  if (!fs.existsSync(filePath)) {
-    const initialData = { message: "Archivo creado con éxito" };
-    fs.writeFileSync(filePath, JSON.stringify(initialData, null, 2));
-    console.log("Archivo creado en:", filePath);
-  } else {
-    console.log("El archivo ya existe:", filePath);
-  }
-};
-
 export async function GET() {
   try {
+    const initFile = () => {
+      if (!fs.existsSync(filePath)) {
+        const initialData = { message: "Archivo creado con éxito" };
+        fs.writeFileSync(filePath, JSON.stringify(initialData, null, 2));
+        console.log("Archivo creado en:", filePath);
+      } else {
+        console.log("El archivo ya existe:", filePath);
+      }
+    };
     initFile();
     const usersPath = path.join(process.cwd(), "/tmp/tasks.json");
     const file = fs.readFileSync(usersPath);

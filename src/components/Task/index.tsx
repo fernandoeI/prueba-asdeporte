@@ -1,14 +1,14 @@
+import { useTaskContext } from "@/context/TaskContext";
 import { ITask } from "@/interfaces/task";
-import { useTask } from "./useTask";
+
 import { useState } from "react";
 
 interface Props {
   task: ITask;
-  refresh: () => void;
 }
 
-const Task = ({ task, refresh }: Props) => {
-  const { onDelete, onUpdate } = useTask({ refresh });
+const Task = ({ task }: Props) => {
+  const { onDelete, onUpdate } = useTaskContext();
   const [newTask, setNewTask] = useState(task);
   const isDisabled = !newTask.name ? "bg-gray-400" : "bg-blue-600";
 

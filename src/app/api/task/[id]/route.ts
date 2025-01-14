@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
 import { ITask } from "@/interfaces/task";
+import fs from "fs";
+import path from "path";
 
 export async function DELETE(
   _req: NextRequest,
@@ -8,13 +9,14 @@ export async function DELETE(
 ) {
   const id = (await params).id;
 
-  const file = await fs.readFile(process.cwd() + "/public/tasks.json", "utf8");
-  const data = JSON.parse(file);
+  let usersPath = path.join(process.cwd(), "/public/tasks.json");
+  let file = fs.readFileSync(usersPath);
+  const data = JSON.parse(file.toString());
 
   const index = data.findIndex((x: ITask) => x.id === id);
   data.splice(index, 1);
 
-  await fs.writeFile(
+  fs.writeFileSync(
     process.cwd() + "/public/tasks.json",
     JSON.stringify(data, null, 2)
   );
@@ -29,13 +31,13 @@ export async function PUT(
   const id = (await params).id;
   const body = await req.json();
 
-  const file = await fs.readFile(process.cwd() + "/public/tasks.json", "utf8");
+  const file = fs.readFileSync(process.cwd() + "/public/tasks.json", "utf8");
   const data = JSON.parse(file);
 
   const index = data.findIndex((x: ITask) => x.id === id);
   data.splice(index, 1, body);
 
-  await fs.writeFile(
+  fs.writeFileSync(
     process.cwd() + "/public/tasks.json",
     JSON.stringify(data, null, 2)
   );

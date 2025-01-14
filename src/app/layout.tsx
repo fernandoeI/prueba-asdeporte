@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Provider from "@/components/Provider";
+import { TaskProvider } from "@/context/TaskContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <TaskProvider>{children}</TaskProvider>
+        </Provider>
       </body>
     </html>
   );

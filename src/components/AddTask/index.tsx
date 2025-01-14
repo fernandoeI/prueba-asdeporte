@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { useAddTask } from "./useAddTask";
+import { useTaskContext } from "@/context/TaskContext";
 
-interface Props {
-  refresh: () => void;
-}
-const AddTask = ({ refresh }: Props) => {
-  const { onAdd } = useAddTask({ refresh });
+const AddTask = () => {
+  const { onAdd } = useTaskContext();
   const [name, setName] = useState("");
   const isDisabled = !name ? "bg-gray-400" : "bg-blue-600";
 
